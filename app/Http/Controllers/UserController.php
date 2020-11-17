@@ -35,6 +35,7 @@ class UserController extends Controller
      */
     public function ListDirectory() {
         $username = Auth::user()->name;
+        $this->_createDirectory($username);
         $result = array_diff(scandir(env('USER_DEFAULT_DIRECTORY') . DIRECTORY_SEPARATOR . $username), array('..', '.'));
         $actualResult = [];
         foreach($result as $item) {
@@ -139,6 +140,7 @@ class UserController extends Controller
      */
     public function ListFile() {
         $username = Auth::user()->name;
+        $this->_createDirectory($username);
         $result = array_diff(scandir(env('USER_DEFAULT_DIRECTORY') . DIRECTORY_SEPARATOR . $username), array('..', '.'));
         $actualResult = [];
         foreach($result as $item) {
